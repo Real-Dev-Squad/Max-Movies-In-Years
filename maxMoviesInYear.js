@@ -1,23 +1,31 @@
 /**
  * @name maxMoviesInYear
- * @description Function to find year with maximum number of movies
+ * @description Function to find years with maximum number of movies licensed
  * @param {Array} moviesList The list of movies
- * @returns {Number} Year with max movies
+ * @returns {Number[]} Years with max movies on platform
  */
-function maxMoviesInYear(moviesList) {
-    if (moviesList.length === 0 || moviesList.length === 1) {
-        return (moviesList.length === 0) ? 0 : moviesList[0].license[0];
-    } else {
-        const years = [];
-        moviesList.forEach(movie => years.push(...movie.license));
-        let [maxMoviesYear, frequency] = [years[1], 1];
+function maxMoviesInYears(moviesList) {
+    if (moviesList.length === 0) return [];
 
-        years.forEach(year => {
-            const currentFrequency = years.filter(y => y === year).length;
-            if (currentFrequency > frequency) [maxMoviesYear, frequency] = [year, currentFrequency];
-        });
-        return maxMoviesYear;
-    }
+    const years = [];
+    moviesList.forEach(movie => {
+        for (let y = movie.license[0]; y <= movie.license[1]; ++y) years.push(y);
+    });
+
+    if (moviesList.length === 1) return years;
+
+    const maxMovieYears = new Set();
+    let frequency = 1;
+    years.forEach(year => {
+        const currentFrequency = years.filter(y => y === year).length;
+
+        if (currentFrequency >= frequency) {
+            if (currentFrequency > frequency) maxMovieYears.clear();
+            maxMovieYears.add(year);
+            frequency = currentFrequency;
+        }
+    });
+    return [...maxMovieYears];
 }
 
 const listOfMovies = [
@@ -39,4 +47,4 @@ const listOfMovies = [
     }
 ];
 
-console.log(maxMoviesInYear(listOfMovies));
+console.log(maxMoviesInYears(listOfMovies));
