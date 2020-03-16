@@ -23,8 +23,27 @@ function findMaxMoviesInYear () {
   
 }
 
+
 function findMaxKeyInAObject ( obj ) {
-    return Object.keys(obj).reduce(function(a, b){ return obj[a] > obj[b] ? a : b });
+    let resultingArray = [];
+    let MAX_VALUE = 1;
+    for ( let key in obj ) {
+        if ( !resultingArray ) {
+            resultingArray.push(key)
+        }
+        if ( obj[key] === MAX_VALUE ) {
+            resultingArray.push(key)
+        }
+       
+        if ( obj[key] > MAX_VALUE ) {
+            MAX_VALUE = obj[key];
+            resultingArray = [];
+            resultingArray.push(key)
+        }
+      
+       
+    }
+    return resultingArray.length===1? resultingArray[0]:resultingArray
 
 }
 
