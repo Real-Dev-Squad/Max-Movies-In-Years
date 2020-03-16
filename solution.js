@@ -1,20 +1,17 @@
 /**
- * @param {{ name: string, license: [number, number]}[]} apiResponse
+ * @param {{ name: string, license: [number, number]}[]} data
  * @returns {{year: number, count: number}[]}
  */
 
-const maxMovieInYears = apiResponse => {
-  let countOfEveryYear = {}; // To store the count of every year
+const maxMovieInYears = data => {
+  const countOfEveryYear = {};
+  let maxCount = 0;
+  let yearsWithMaxCount = [];
 
-  let maxCount = 0; // To track the maximum Count
-
-  let yearsWithMaxCount = []; // To store all the years with the maximum count
-
-  let yearsRange = apiResponse.map(movieData => movieData.license);
+  const yearsRange = data.map(movieData => movieData.license);
 
   yearsRange.forEach(yearRange => {
-    let startYear = yearRange[0];
-    let endYear = yearRange[1];
+    let [startYear, endYear] = yearRange;
 
     let year = startYear;
     while (year <= endYear) {
