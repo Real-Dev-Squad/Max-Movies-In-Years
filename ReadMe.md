@@ -45,7 +45,7 @@ for(var i=0;i<allYears.length;i=i+counter){
     
 **SPACE COMPLEXITY:** O(n*m)
 where m is max range of year license
-
+in my case m=19-3+1=17
 ```
 for(var i=0;i<movieList.length;i++){
 		for(var j=0;j<movieList[i].year_range.length;j++){
