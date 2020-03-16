@@ -1,7 +1,7 @@
 const mockData= require('./mockResult.js')
 
 function findMaxMoviesInYear () {
-    let moviesInAYear = {};
+    const moviesInAYear = {};
     for ( let movie of mockData ) {
         movie.license.reduce( ( acc, currentValue,currentIndex ) => {  
             let currentYear = currentValue;
