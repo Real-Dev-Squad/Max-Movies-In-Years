@@ -16,14 +16,15 @@ const maxMovieInYears = apiResponse => {
     let startYear = yearRange[0];
     let endYear = yearRange[1];
 
-    while (startYear <= endYear) {
-      if (!(startYear in countOfEveryYear)) {
-        countOfEveryYear[startYear] = 1;
+    let year = startYear;
+    while (year <= endYear) {
+      if (!(year in countOfEveryYear)) {
+        countOfEveryYear[year] = 1;
       } else {
-        countOfEveryYear[startYear]++;
+        countOfEveryYear[year]++;
       }
 
-      startYear++;
+      year++;
     }
   });
 
