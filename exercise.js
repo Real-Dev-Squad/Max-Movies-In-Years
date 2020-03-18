@@ -40,7 +40,7 @@ function show(movie) {
     for (let i = 0; i < movie.length; i++) {
         years.push(movie[i].license[0], (movie[i].license[0] + 1), movie[i].license[1]);
     }
-    console.log(years);
+  
     let y = [];
 
     for (let i = 0; i < years.length; i++) {
@@ -50,7 +50,7 @@ function show(movie) {
                 y[i] = y[i] + 1;
             }
         }
-        console.log(years[i] + " has movies " + y[i]);
+       
     }
 
     for (let i = 0; i < years.length; i++) {
