@@ -3,7 +3,7 @@ const mockData= require('./mockResult.js')
 function findMaxMoviesInYear ( data ) {
     const moviesInAYear = {};
     for ( let movie of data ) {
-        const movieLicenseArray = movie.license.slice();
+        const movieLicenseArray = movie.license;
         const movieLicenseStartYear = movieLicenseArray[0];
         const movieLicenseEndYear = movieLicenseArray[movieLicenseArray.length - 1];
 

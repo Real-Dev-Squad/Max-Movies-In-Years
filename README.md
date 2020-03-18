@@ -30,11 +30,13 @@ Write a JS Module that returns in what year we had the maximum number of movies 
 
 ### Time Complexity
 
-`O(L)` : Where L is the length of the array (number of array elements)
+`O(L*dmax)+dmax` : Where L is the length of the movies array and dmax is the maximum difference in the years                     of the movie licenses in the movies array
 
 ### Space Complexity
 
-`O(1)` : Constant time
+`O(dmax)` : Where dmax is the maximum difference in the years of the movie licenses in the movies array,
+            (dmax+dmax=2dmax=dmax) since constant is ignored
+
 
 
 ### Crtical Parts / Bottleneck:
