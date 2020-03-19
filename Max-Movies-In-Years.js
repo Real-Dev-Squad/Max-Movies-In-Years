@@ -1,5 +1,4 @@
-const res = [
-  {
+const res = [{
     name: "Lion King",
     license: [2008, 2010]
   },
@@ -13,6 +12,7 @@ const res = [
     license: [2008, 2011, 2014]
   }
 ];
+
 function getMaximumYears(res) {
   const licenseArray = res.reduce((acc, element) => {
     return acc.concat(element.license);
@@ -28,7 +28,7 @@ function getMaximumYears(res) {
 
   let maximumYear = 0;
   let maximumValue = 0;
-  yearMap.forEach(function(value, key) {
+  yearMap.forEach(function (value, key) {
     if (value > maximumValue) {
       maximumValue = value;
       maximumYear = key;
@@ -37,4 +37,6 @@ function getMaximumYears(res) {
   return maximumYear;
 }
 
-export {getMaximumYears}
+export {
+  getMaximumYears
+}
