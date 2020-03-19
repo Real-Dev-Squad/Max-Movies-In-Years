@@ -1,4 +1,4 @@
-var arr = 
+const arr = 
 [
   {
     name: "Lion King",
@@ -20,55 +20,46 @@ var arr =
 ];
 
 
-var frequency = {};
-
 function main(arr)
 {
-	countYearFrequency(arr)
-	maxYears = getMaxYear(frequency)
-	return maxYears
+	let frequency = countYearFrequency(arr);
+	let maxYears = getMaxYear(frequency);
+	return maxYears;
 }
 
 function countYearFrequency(arr) 
 {
-	arr.forEach(updateYearFrequency);     
+  let frequency = {};
+	arr.forEach((item)=>{
+    
+  let startOfRange = item.license[0];
+  let endOfRange = item.license[1];
+
+  for(let i = startOfRange; i<=endOfRange; i++ )
+  {
+    if (i in frequency)
+      frequency[i]++;
+    else
+      frequency[i] = 1;
+  }});
+  return frequency;     
 }
 
-function updateYearFrequency(item)
-{
-	startOfRange = item.license[0]
-	endOfRange = item.license[1]
-	
-	var i;
-	for(i = startOfRange; i<=endOfRange; i++ )
-	{
-		if (i in frequency)
-			frequency[i]++
-
-		else
-			frequency[i] = 1
-	}
-}
 
 function getMaxYear(frequency)
 {
-	year = []
-	max = 0
-	for (var key in frequency)
-	{
+	let result_years = []
 
-  		if (frequency[key] == max)
-  		{
-  			year.push(key)
-  		}
-  		else if (frequency[key] > max)
-  		{
-  			max = frequency[key]
-  			year = [key]
-  		}
-	}
-	return year
+  //find maximum movies in any year
+	let max = Math.max.apply(null,Object.values(frequency))
+
+  //find years having max number of movies
+  Object.entries(frequency).forEach(([year,no_of_movies])=>{
+     if (no_of_movies == max)
+       result_years.push(year);
+   });
+  return result_years;
 }
 
-var result  = main(arr)
+let result  = main(arr)
 console.log(result);
