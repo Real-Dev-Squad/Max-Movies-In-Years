@@ -33,6 +33,11 @@ The function to retrive the list of years with maximum number of Movies existing
 */ 
 
 function yearWithMaxMovies(l){
+
+    if(l.length==0)
+    {
+        return [];
+    }
     /*
 sort the movie objects in-place  with according to their starting year and if has a conflict then resolve it 
 with the ending year
@@ -126,4 +131,4 @@ example ans=[[2011,2015],[2020,2022]] y=[2011,2012,2013,2014,2015,2020,2021,2022
     return y;
 }
 
-export{yearWithMaxMovies}
+module.exports = yearWithMaxMovies
