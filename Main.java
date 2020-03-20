@@ -1,3 +1,7 @@
+// for n no of movies, each movie licensed for m years
+//Space complexity O(n)
+// Time complexity O(n*m)
+
 import java.util.*; 
 
 class Movie{
