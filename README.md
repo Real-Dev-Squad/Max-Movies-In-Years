@@ -1,15 +1,15 @@
 # Max-Movies-In-Years
 
-Max-Movies-In-Years-3 => 
+Max-years => Steps followed 
 
-Time Complexity = O(nlogn) where n is the number of elements in response array 
+Sorted the given response 
+Built map based on  increment and decrement of movies
+Built cummulative map and then find global maxima and local minima to get interval
+Perpare set based on obtained interval
 
-Space Complexity = we have used auxillary array to store the year answer array which will take space in worse case O(maxYear - minYear)
+Time complexity = O(nlogn) where n will be the elements in array
+Space complexity = O((Ymax-Ymin))
 
 
-Max-Movies-In-Years-2 =>  
 
-Time Complexity = O(nlogn) where n is the number of element in years array
-
-Space Complexity = O(maxyears-minyear) => map and array
 
