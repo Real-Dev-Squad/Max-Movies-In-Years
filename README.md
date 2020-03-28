@@ -24,3 +24,9 @@ Imagine that we can fetch from an API the details of all movies that were ever s
 **License**: `[<start year of the license>: Number, <end year of the license>: Number]`
 
 Write a JS Module that returns in what year we had the maximum number of movies on that platfrom
+
+** Time complexity analysis **
+O(nlogn)
+
+** Space complexity**
+O(n)
