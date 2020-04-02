@@ -10,7 +10,7 @@ const mockData = require( '../mockResult.js' );
 const { isNumber } = require( './helpers/index.js' );
 
 /**
- * Returns a object with year as a key where starting year keeps increasing and a year after end year keeps decreasing
+ * Returns a object with year as a key where starting year keeps increasing and a year after end year keeps decreasing by 1
  * @param {array} movies -Movies array
  */
 
@@ -19,8 +19,12 @@ function getFrequencyOfYears ( movies ) {
     for ( let movie of movies ) {
         const movieLicenseArray = movie.license;
         const movieLicenseStartYear = movieLicenseArray[0];
-        const movieLicenseYearNextToEnd = movieLicenseArray[movieLicenseArray.length - 1] + 1;
-
+        const movieLicenseEndYear = movieLicenseArray[movieLicenseArray.length - 1];
+        
+        // check if startYear is always less than End Year
+        if ( movieLicenseStartYear > movieLicenseEndYear ) return {};
+            
+        const movieLicenseYearNextToEnd = movieLicenseEndYear + 1;
         frequencyObj[movieLicenseStartYear] = isNumber( frequencyObj[movieLicenseStartYear] + 1 )? (frequencyObj[movieLicenseStartYear] + 1 ): 1;
         frequencyObj[movieLicenseYearNextToEnd] = isNumber( frequencyObj[movieLicenseYearNextToEnd] - 1) ? frequencyObj[movieLicenseYearNextToEnd] - 1 : -1;
     }
@@ -97,10 +101,23 @@ function getAllMovieYearsWithMaxFrequency ( movieYearsWithMaxFrequency, allMovie
     return resultArray;
 }
 
-const frequencyOfYears = getFrequencyOfYears( mockData );
-const sortedYearsWithFrequency = getSortedYearsWithFrequency( frequencyOfYears );
-const sortedYearsWithSummedFrequencies = getSortedYearsWithSummedFrequencies( sortedYearsWithFrequency );
-const movieYearsWithMaxFrequency = getMovieYearsWithMaxFrequencySubset( sortedYearsWithSummedFrequencies );
-const allMovieYearsWithMaxFrequency = getAllMovieYearsWithMaxFrequency( movieYearsWithMaxFrequency, sortedYearsWithSummedFrequencies );
 
-console.log( allMovieYearsWithMaxFrequency, "allMovieYearsWithMaxFrequency" );
+function driverFunction ( mockData ) {
+    if ( mockData.length === 0 ) return [];
+    const frequencyOfYears = getFrequencyOfYears( mockData );
+    // console.log( frequencyOfYears, "frequencyOfYears" );
+    if ( Object.keys( frequencyOfYears ).length === 0 ) return [];
+    const sortedYearsWithFrequency = getSortedYearsWithFrequency( frequencyOfYears );
+    // console.log(sortedYearsWithFrequency,"sortedYearsWithFrequency")
+    const sortedYearsWithSummedFrequencies = getSortedYearsWithSummedFrequencies( sortedYearsWithFrequency );
+    // console.log(sortedYearsWithSummedFrequencies,"sortedYearsWithSummedFrequencies")
+    const movieYearsWithMaxFrequency = getMovieYearsWithMaxFrequencySubset( sortedYearsWithSummedFrequencies );
+    // console.log(movieYearsWithMaxFrequency,"movieYearsWithMaxFrequency")
+    const allMovieYearsWithMaxFrequency = getAllMovieYearsWithMaxFrequency( movieYearsWithMaxFrequency, sortedYearsWithSummedFrequencies );
+    // console.log(allMovieYearsWithMaxFrequency,"allMovieYearsWithMaxFrequency")
+    return allMovieYearsWithMaxFrequency;
+}
+
+module.exports = driverFunction
+
+
